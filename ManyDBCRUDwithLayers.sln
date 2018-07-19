@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManyDBCRUDwithLayers", "ManyDBCRUDwithLayers\ManyDBCRUDwithLayers.csproj", "{9BBF9A63-4A22-4DE8-9D48-350BCD542C22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BBF9A63-4A22-4DE8-9D48-350BCD542C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BBF9A63-4A22-4DE8-9D48-350BCD542C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BBF9A63-4A22-4DE8-9D48-350BCD542C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BBF9A63-4A22-4DE8-9D48-350BCD542C22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA630727-C278-499F-A066-360A56A2594B}
+	EndGlobalSection
+EndGlobal
