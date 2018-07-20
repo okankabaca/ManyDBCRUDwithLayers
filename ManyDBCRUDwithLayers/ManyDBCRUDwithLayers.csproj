@@ -159,6 +159,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="Helper\Global.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TableStajController.cs" />
@@ -209,6 +210,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\TableStaj\Index.cshtml" />
+    <Content Include="Views\TableStaj\FindAll.cshtml" />
+    <Content Include="Views\Home\UseSqlServer.cshtml" />
+    <Content Include="Views\Home\UsePostgreSql.cshtml" />
+    <Content Include="Views\Home\Hata.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

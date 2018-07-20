@@ -1,4 +1,5 @@
-﻿using ManyDBCRUDwithLayers.Layers;
+﻿using ManyDBCRUDwithLayers.App_Start;
+using ManyDBCRUDwithLayers.Layers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,17 @@ namespace ManyDBCRUDwithLayers.Controllers
     public class TableStajController : Controller
     {
 
-        public LayerBaseDB myDB = new LayerPostgreSql();
         public ActionResult Index()
         {
-            return View(myDB.FindAll());
+            return View();
+        }
+
+        public ActionResult FindAll()
+        {
+            if(Global.myDB!=null)
+            return View(Global.myDB.FindAll());
+
+            return RedirectToAction("Hata","Home",new { hataMesaji= "DB has not found"});
         }
 
         // GET: TableStaj/Details/5

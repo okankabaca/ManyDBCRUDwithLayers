@@ -18,10 +18,18 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
+            <div class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("SqlServer", "UseSqlServer", "Home")</li>
+                    <li>@Html.ActionLink("PostgreSql", "UsePostgreSql", "Home")</li>
+                </ul>
+            </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("TableStaj", "Index", "TableStaj")</li>
+                    <li>@Html.ActionLink("TableStajGör", "FindAll", "TableStaj")</li>
+
                 </ul>
             </div>
         </div>
