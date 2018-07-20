@@ -1,2 +1,9 @@
 # ManyDBCRUDwithLayers
-.NET MVC mimarisi ile farklı veritabanları kullanarak katmanlarda abstract yapısı ile işlem yapıldı.
+ASP.NET MVC mimarisi
+
+-Sql Server Kullanılmıştır
+-PostgSql Kullanılmıştır
+
+-Veritabanı işlemleri için abstract katman oluşturulmuştur.
+
+-CRUD işlemleri yapılmıştır.
