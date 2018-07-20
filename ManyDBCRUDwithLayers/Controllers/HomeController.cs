@@ -1,6 +1,7 @@
 ﻿using ManyDBCRUDwithLayers.App_Start;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,14 +18,14 @@ namespace ManyDBCRUDwithLayers.Controllers
 
         public ActionResult UseSqlServer()
         {
-            Global.setDB(true);
+            ConfigurationManager.AppSettings["DBType"] = "MSSQL";
             return RedirectToAction("FindAll", "TableStaj");
 
         }
 
         public ActionResult UsePostgreSql()
         {
-            Global.setDB(false);
+            ConfigurationManager.AppSettings["DBType"] = "POSTGRESQL";
             return RedirectToAction("FindAll", "TableStaj");
 
         }
