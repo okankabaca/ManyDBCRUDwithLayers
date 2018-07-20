@@ -211,8 +211,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\TableStaj\Index.cshtml" />
     <Content Include="Views\TableStaj\FindAll.cshtml" />
-    <Content Include="Views\Home\UseSqlServer.cshtml" />
-    <Content Include="Views\Home\UsePostgreSql.cshtml" />
     <Content Include="Views\Home\Hata.cshtml" />
     <Content Include="Views\TableStaj\Create.cshtml" />
     <Content Include="Views\TableStaj\Edit.cshtml" />

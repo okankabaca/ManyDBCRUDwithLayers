@@ -59,42 +59,38 @@ namespace ManyDBCRUDwithLayers.Controllers
             return RedirectToAction("Hata", "Home", new { hataMesaji = "DB has not found" });
         }
 
-        // POST: TableStaj/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, TableStajModel tableStajModel)
         {
-            try
-            {
-                // TODO: Add update logic here
+            int result = -1;
+            if (Global.myDB != null)
+                result = Global.myDB.Edit(id, tableStajModel);
+            else
+                return RedirectToAction("Hata", "Home", new { hataMesaji = "DB has not found" });
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            if (result > 0)
+                return RedirectToAction("FindAll", "TableStaj");
+
+            return RedirectToAction("Hata", "Home", new { hataMesaji = "Edit Error" });
+
         }
 
-        // GET: TableStaj/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            int result = -1;
+            if (Global.myDB != null)
+                result = Global.myDB.Delete(id);
+            else
+                return RedirectToAction("Hata", "Home", new { hataMesaji = "DB has not found" });
+
+            if (result > 0)
+                return RedirectToAction("FindAll", "TableStaj");
+
+
+            return RedirectToAction("Hata", "Home", new { hataMesaji = "Delete Error" });
+
         }
 
-        // POST: TableStaj/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

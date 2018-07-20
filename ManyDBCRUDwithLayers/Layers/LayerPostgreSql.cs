@@ -70,7 +70,6 @@ namespace ManyDBCRUDwithLayers.Layers
         }
 
 
-
         public override int Create(TableStajModel tableStaj)
         {
             int result;
@@ -93,5 +92,62 @@ namespace ManyDBCRUDwithLayers.Layers
             }
             return result;
         }
+
+
+        public override int Edit(int id, TableStajModel tableStajModel)
+        {
+            int result = -1;
+
+            if (this.FindOne(id) != null)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(postgreSqlConnection))
+                using (NpgsqlCommand command = new NpgsqlCommand())
+                {
+                    connection.Open();
+                    command.CommandText = "Update tablestaj " +
+                        "Set name=@name,lastname=@lastname,age=@age,\"user\"=@user " +
+                        "Where id=@id";
+
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@name", tableStajModel.name);
+                    command.Parameters.AddWithValue("@lastname", tableStajModel.lastname);
+                    command.Parameters.AddWithValue("@age", tableStajModel.age);
+                    command.Parameters.AddWithValue("@user", tableStajModel.user);
+
+                    command.Connection = connection;
+
+                    result = command.ExecuteNonQuery();
+
+                }
+            }
+
+            return result;
+        }
+
+
+        public override int Delete(int id)
+        {
+            int result = -1;
+
+            if (this.FindOne(id) != null)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(postgreSqlConnection))
+                using (NpgsqlCommand command = new NpgsqlCommand())
+                {
+                    connection.Open();
+
+                    command.CommandText = "Delete From tablestaj " +
+                        "Where id=@id";
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Connection = connection;
+
+                    result = command.ExecuteNonQuery();
+
+                }
+            }
+
+            return result;
+        }
+
     }
 }

@@ -18,13 +18,15 @@ namespace ManyDBCRUDwithLayers.Controllers
         public ActionResult UseSqlServer()
         {
             Global.setDB(true);
-            return View();
+            return RedirectToAction("FindAll", "TableStaj");
+
         }
 
         public ActionResult UsePostgreSql()
         {
             Global.setDB(false);
-            return View();
+            return RedirectToAction("FindAll", "TableStaj");
+
         }
 
         public ActionResult Hata(string hataMesaji)

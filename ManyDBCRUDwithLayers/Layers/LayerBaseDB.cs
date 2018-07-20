@@ -24,5 +24,15 @@ namespace ManyDBCRUDwithLayers.Layers
         {
             return -1;
         }
+
+        public virtual int Edit(int id,TableStajModel tableStajModel)
+        {
+            return -1;
+        }
+
+        public virtual int Delete(int id)
+        {
+            return -1;
+        }
     }
 }
