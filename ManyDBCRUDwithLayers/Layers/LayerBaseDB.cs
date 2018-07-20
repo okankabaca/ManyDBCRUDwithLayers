@@ -14,5 +14,15 @@ namespace ManyDBCRUDwithLayers.Layers
         {
             return null;
         }
+
+        public virtual TableStajModel FindOne(int id)
+        {
+            return null;
+        }
+
+        public virtual int Create(TableStajModel tableStaj)
+        {
+            return -1;
+        }
     }
 }

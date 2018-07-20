@@ -1,5 +1,6 @@
 ﻿using ManyDBCRUDwithLayers.App_Start;
 using ManyDBCRUDwithLayers.Layers;
+using ManyDBCRUDwithLayers.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,10 @@ namespace ManyDBCRUDwithLayers.Controllers
 
         public ActionResult FindAll()
         {
-            if(Global.myDB!=null)
-            return View(Global.myDB.FindAll());
+            if (Global.myDB != null)
+                return View(Global.myDB.FindAll());
 
-            return RedirectToAction("Hata","Home",new { hataMesaji= "DB has not found"});
+            return RedirectToAction("Hata", "Home", new { hataMesaji = "DB has not found" });
         }
 
         // GET: TableStaj/Details/5
@@ -33,29 +34,29 @@ namespace ManyDBCRUDwithLayers.Controllers
         // GET: TableStaj/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new TableStajModel());
         }
 
         // POST: TableStaj/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TableStajModel tableStajModel)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            int result;
+            result = Global.myDB.Create(tableStajModel);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            if (result > 0)
+                return RedirectToAction("FindAll", "TableStaj");
+
+            return RedirectToAction("Hata", "Home", new { hataMesaji = "Create error" });
+
         }
 
-        // GET: TableStaj/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (Global.myDB != null)
+                return View(Global.myDB.FindOne(id));
+
+            return RedirectToAction("Hata", "Home", new { hataMesaji = "DB has not found" });
         }
 
         // POST: TableStaj/Edit/5

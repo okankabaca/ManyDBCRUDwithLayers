@@ -18,7 +18,7 @@ namespace ManyDBCRUDwithLayers.Layers
 
         public override DataTable FindAll()
         {
-            DataTable dateTable = new DataTable();
+            DataTable dataTable = new DataTable();
             using (SqlConnection connection = new SqlConnection(sqlConnectionString))
             using (SqlCommand command = new SqlCommand())
             {
@@ -26,14 +26,67 @@ namespace ManyDBCRUDwithLayers.Layers
                 command.CommandText = "Select *From tablestaj";
                 command.Connection = connection;
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                dataAdapter.Fill(dateTable);
+                dataAdapter.Fill(dataTable);
             }
 
-            return dateTable;
-
+            return dataTable;
         }
 
-}
+        public override TableStajModel FindOne(int id)
+        {
+            TableStajModel tableStajModel;
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+            using (SqlCommand command = new SqlCommand())
+            {
+                connection.Open();
+                command.CommandText = "Select *From tablestaj " +
+                    "Where id=@id";
+                command.Parameters.AddWithValue("@id", id);
+
+                command.Connection = connection;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                dataAdapter.Fill(dataTable);
+            }
+
+            if (dataTable.Rows.Count >= 1)
+            {
+                tableStajModel = new TableStajModel();
+
+                tableStajModel.Id = Convert.ToInt32(dataTable.Rows[0][0].ToString());
+                tableStajModel.name = dataTable.Rows[0][1].ToString();
+                tableStajModel.lastname = dataTable.Rows[0][2].ToString();
+                tableStajModel.age = Convert.ToInt32(dataTable.Rows[0][3].ToString());
+                tableStajModel.user = Convert.ToInt32(dataTable.Rows[0][4].ToString());
+
+                return tableStajModel;
+            }
+            return null;
+        }
+
+        public override int Create(TableStajModel tableStaj)
+        {
+            int result;
+
+            using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+            using (SqlCommand command = new SqlCommand())
+            {
+                connection.Open();
+
+                command.CommandText = "Insert Into tablestaj Values(@name,@lastname,@age,@user)";
+                command.Parameters.AddWithValue("@name", tableStaj.name);
+                command.Parameters.AddWithValue("@lastname", tableStaj.lastname);
+                command.Parameters.AddWithValue("@age", tableStaj.age);
+                command.Parameters.AddWithValue("@user", tableStaj.user);
+
+                command.Connection = connection;
+                result = command.ExecuteNonQuery();
+            }
+            return result;
+        }
+
+    }
 
 
 }
