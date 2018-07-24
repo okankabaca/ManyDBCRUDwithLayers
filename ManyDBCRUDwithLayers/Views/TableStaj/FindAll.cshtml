@@ -3,39 +3,64 @@
     ViewBag.Title = "FindAll";
 }
 
-<h2>MyTable</h2>
+<div class="form-group pull-right">
+    <input type="text" class="form-control search" placeholder="What you looking for?" />
+</div>
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>Name</th>
-        <th>LastName</th>
-        <th>Age</th>
-        <th>User</th>
-        <th>Action</th>
-
-    </tr>
-    @for (int i = 0; i < Model.Rows.Count; i++)
-    {
+<h3>MyTable</h3>
+<table class="table table-striped" id="myDataTable">
+    <thead>
         <tr>
-            <td>@Model.Rows[i][1]</td>
-            <td>@Model.Rows[i][2]</td>
-            <td>@Model.Rows[i][3]</td>
-            <td>@Model.Rows[i][4]</td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Rows[i][0] }) |
-                <input type="button" class="deleteRow" value="Delete" id=@Model.Rows[i][0] />
-            </td>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>Age</th>
+            <th>User</th>
+            <th>Action</th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td>@Model.Rows[i][1]</td>
+                <td>@Model.Rows[i][2]</td>
+                <td>@Model.Rows[i][3]</td>
+                <td>@Model.Rows[i][4]</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Rows[i][0] }) |
+                    <input type="button" class="btn-danger deleteRow" value="Delete" id=@Model.Rows[i][0] />
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 @Html.ActionLink("Add", "Create", "TableStaj")
 
+
+
 @section scripts{
+
+    @*Search Script*@
+    <script>
+        $(document).on('keyup', '.search', function () {
+            var seachTerm = $(this).val().toLowerCase();
+            $('#myDataTable tbody tr').each(function () {
+                var rowString = $(this).text().toLowerCase();
+                if (rowString.indexOf(seachTerm) == -1) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        });
+    </script>
+
+
+    @*Delete Script*@
     <script type="text/javascript">
-        $(document).on("click", ".deleteRow", function () {
-           
+        $(document).on('click', '.deleteRow', function () {
             var confirmDelete = confirm("Are you sure?");
             if (confirmDelete) {
                 var id = ($(this).attr("id"));
@@ -52,13 +77,8 @@
                     }
 
                 });
-
             }
-
         });
 
     </script>
 }
-
-
-
