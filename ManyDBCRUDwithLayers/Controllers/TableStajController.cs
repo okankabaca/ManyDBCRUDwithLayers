@@ -75,20 +75,14 @@ namespace ManyDBCRUDwithLayers.Controllers
 
         }
 
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public int Delete(int id)
         {
             int result = -1;
             if (Global.myDB != null)
                 result = Global.myDB.Delete(id);
-            else
-                return RedirectToAction("Hata", "Home", new { hataMesaji = "DB has not found" });
 
-            if (result > 0)
-                return RedirectToAction("FindAll", "TableStaj");
-
-
-            return RedirectToAction("Hata", "Home", new { hataMesaji = "Delete Error" });
-
+            return result;
         }
 
 
